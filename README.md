@@ -1,7 +1,7 @@
 Single Player Bingo - Android Mobile App
 
 Note: You can simulate the entire game to test it. I have included a variable called callSpeed in game.lua.
-This variable can fast forwards the call speed (ie. set it to 100) and the AI gameplay is also sped up, 
+This variable can fast forward the call speed (ie. set it to 100) and the AI gameplay is also sped up, 
 so that you don't have to play the entire game to test it, just let AI opponent do the work!!
 
 Follows the rules of a traditional bingo game, but the calls are time paced,
