@@ -176,7 +176,7 @@ function createChip()
            end
        end
        --checking for bingo events for the ai
-       rayCast(data.playerSlotPositions)
+       rayCast(data.playerSlotPositions,"player")
 	end
 	-- a number call is made every 5 seconds
 	t = timer.performWithDelay(callSpeed,random,74)
@@ -190,7 +190,7 @@ function isTapped(event)
 	    	chip.xScale,chip.yScale = 0.20,0.20
 	    	cardSet[#cardSet+1] = chip
 	    	playerSet[#playerSet+1] = chip
-	    	rayCast(data.aiSlotPositions)
+	    	rayCast(data.aiSlotPositions,"ai")
 	    	event.target.tapped = true
 		end
 	end
@@ -273,15 +273,18 @@ function scene:create(event)
 	text.alpha = 0
 	text:setFillColor(1,0,0)
 
-    --playerScoreText = display.newText("myScore: 0",data.w-(data.w-30),data.h-(data.h+30),native.systemFont,10)
-    --opponentScoreText = display.newText("opponentScore: 0", data.w_-100,playerScoreText.y,native.systemFont,10)
-	--sceneGroup:insert(playerScoreText)
-	--sceneGroup:insert(opponentScoreText)
 end 
 
 local function endGame()
+	for i=0,#cardSet do display.remove(cardSet[i]) end
 	timer.cancel(t)
-	button2:setLabel("New")
+	button1.id = "new"
+	button1:setLabel("New")
+	button1:setEnabled(true)
+
+	button2.id = "start"
+	button2:setLabel("Start")
+	isGameActive = false
 end
 local function drawLine(x1,y1,x2,y2)
 	local line = display.newLine(x1,y1,x2,y2)
@@ -290,19 +293,15 @@ local function drawLine(x1,y1,x2,y2)
 	cardSet[#cardSet+1] = line	
 end
 -- I left some commented code: this is for a future functionality where players can have multiple bingos
-local function updateScore(table)
-	--clean bingo cards
-	local mParams
-	if(table == data.aiSlotPositions)then
+local function updateScore(winner)
 
-		--opponentScore = opponentScore+5
-		--opponentScoreText.text = "opponentScore: "..opponentScore
-		
+	local mParams
+	if(winner == "player")then
+
+	
 		mParams = {text = "Bingo! You Lose.."}
 
 	else
-		--playerScore = playerScore+5
-		--playerScoreText.text = "opponentScore: "..playerScore
 		mParams = {text = "Bingo! You Win.."}
 		
 		
@@ -313,7 +312,7 @@ local function updateScore(table)
 end
 
 --function that handles detecting any bingo events, table is a table of coordinates of number slots to help build our raycast physics
-function rayCast(table)
+function rayCast(table,player)
 	--set up horizontal raycasts for each column
 
 	for i=1,5 do
@@ -325,7 +324,7 @@ function rayCast(table)
 			if(#horizontalRay >= 5)then
 				--display a line across the bingo region 
 				drawLine(table[i].x-25,table[i].y,220,table[i].y)
-				updateScore(table)
+				updateScore(player)
 			end
 		end
 	end
@@ -335,7 +334,7 @@ function rayCast(table)
 		if(verticalRay)then
 			if(#verticalRay>=5)then
 				drawLine(table[i].x,table[i].y-25,table[i].x,table[i].y+175)
-				updateScore(table)
+				updateScore(player)
 				
 			end
 		end
@@ -349,7 +348,7 @@ function rayCast(table)
 		if(#diagonalRay1>=5)then
 			
 			drawLine(table[1].x-25,table[1].y-25,table[10].x+25,table[5].y+25)
-			updateScore(table)
+			updateScore(player)
 	
 		
 		end
@@ -362,7 +361,7 @@ function rayCast(table)
 		if(#diagonalRay2>=5)then
 			
 			drawLine(table[10].x+25,table[10].y-25,table[5].x-25,table[5].y+25)
-			updateScore(table)
+			updateScore(player)
 
 		end
 	end
@@ -381,7 +380,7 @@ function scene:hide(event)
 	local sceneGroup = self.view
 	if(event.phase == "will")then
 		endGame()
-		for i=0,#cardSet do display.remove(cardSet[i]) end
+		
 	elseif(event.phase == "did")then
 
 	end
