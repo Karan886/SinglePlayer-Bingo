@@ -26,8 +26,6 @@ Notes:
 - User Interface graphics were generated using GIMP (Photo editing tool) and Blender (3d modelling software)
 - The biggest success of this app that I am impressed with is the UI, it really captures
   the traditional wooden table atmosphere for Bingo.
-- There are some issues with screen transition after gameover, the buttons are updated incorrectly, however,
-  the functionalities are not compromised the game cycles between scenes successfully
 - Things to add/issues include: 
     1. allowing users to be able get multiple bingos, and each bingo yields some points
     2. There were some native text rendering issues, the text seemed to be very jagged and too sharp
