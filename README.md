@@ -2,34 +2,32 @@ Single Player Bingo - Android Mobile App
 
 Look in Demo folder for screenshots and video!!
 
-Note: You can simulate the entire game to test it. I have included a variable called callSpeed in game.lua.
-This variable can fast forward the call speed (ie. set it to 100) and the AI gameplay is also sped up, 
-so that you don't have to play the entire game to test it, just let AI opponent do the work!!
+Note: The game can be tested with emulator in IDE(s) such as Android Studio. A variable named callSpeed is included in game.lua for fast fowarding the announcements of numbers and the AI gameplay. User does not need to finish the game for testing, let the opponent(AI) do the work!
 
-Follows the rules of a traditional bingo game, but the calls are time paced,
-if you miss a call, then you cannot place the chip. 
+The application follows the rules of a traditional bingo game but with time-paced calls.
+If you miss a call, then you cannot place the chip. 
 
 To compile and test this game:
 
-1. download corona SDK from https://coronalabs.com
-2. run the game, main.lua file contains minmal code because of the composer API,
+1. Download corona SDK from https://coronalabs.com
+2. Run the game, main.lua file contains minimal code because of the composer API,
    the main code is located in game.lua
-3. If you are using mac with latest update, there may be some issues.
+3. If you are running the application with the latest OS X, there may be some issues.
    For more info checkout: https://coronalabs.com/blog/2014/09/23/os-x-mavericks-10-9-5-and-corona-sdk/
    
 
 Notes:
 
-- Using the composer API eases the screen switches with great functionalities to
-  clean/recycle/reuse scene elements upon transition
+- Using the composer API eases the screen switches by
+  cleaning/recycling/reusing scene elements upon transition
 
-- User Interface graphics were generated using GIMP (Photo editing tool) and Blender (3d modelling software)
-- The biggest success of this app that I am impressed with is the UI, it really captures
+- User Interface graphics are generated using GIMP (Photo editing tool) and Blender (3D modelling software)
+- I am most satisfied with the application's UI, it really captures
   the traditional wooden table atmosphere for Bingo.
-- Things to add/issues include: 
-    1. allowing users to be able get multiple bingos, and each bingo yields some points
-    2. There were some native text rendering issues, the text seemed to be very jagged and too sharp
-    3. Adding multiple bingo can get complex in terms of handling the draw game case
-    4. Want to take this app to a multiplayer platform
-    5. Improve score keeping: highscores, top 3 players etc. (need database hosting for this)
+- Things to add/issue include: 
+    1. Allowing users to get multiple bingos, and each bingo worths some points
+    2. Rendering issues exist with native text, the text seems to be very jagged and too sharp
+    3. Allowing multiple bingos complicates the result when the game ends with a draw
+    4. Planning to add a multiplayer feature
+    5. Improving on score keeping: highscores, top 3 players etc. (need database hosting for this)
     
